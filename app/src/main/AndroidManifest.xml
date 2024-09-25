@@ -13,7 +13,28 @@
         android:theme="@style/Theme.ChallengeOnAirAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.mypage.MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.challenge.OngoingChallengeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.challenge.ChallengeRoomInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.challenge.CreateChallengeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
