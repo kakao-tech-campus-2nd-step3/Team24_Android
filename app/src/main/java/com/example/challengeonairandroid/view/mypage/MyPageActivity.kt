@@ -84,5 +84,12 @@ class MyPageActivity : AppCompatActivity() {
 
         val waitingChallengeAdapter = WaitingChallengeAdapter(challengeList, user)
         waitingChallengeRecyclerView.adapter = waitingChallengeAdapter
+
+        val challengeHistory = findViewById<GridLayout>(R.id.glChallengeList)
+        val historyIntent = Intent(this, MyPageHistoryActivity::class.java)
+        challengeHistory.setOnClickListener {
+            startActivity(historyIntent)
+        }
+
     }
-}g
+}
