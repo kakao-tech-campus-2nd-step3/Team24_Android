@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ChallengeOnAirAndroid</string>
+    <string name="backward">뒤로가기</string>
+    <string name="history">기록</string>
+    <string name="history_date">8.23(목)</string>
+    <string name="success">성공</string>
+    <string name="fail">실패</string>
+    <string name="made">내가 만든</string>
+    <string name="challenge_title">[독서 챌린지] 방처음파본다...</string>
+    <string name="clock_image">시계 이미지</string>
+    <string name="start_time">10:30</string>
+    <string name="tilde">~</string>
+    <string name="end_time">11:00</string>
+    <string name="dot">•</string>
+    <string name="read_book">독서</string>
+    <string name="fee">참여비</string>
+    <string name="fee_30">300</string>
+    <string name="refunds">P / 환급금</string>
+    <string name="refunds_400">400</string>
+    <string name="points">P</string>
 </resources>
