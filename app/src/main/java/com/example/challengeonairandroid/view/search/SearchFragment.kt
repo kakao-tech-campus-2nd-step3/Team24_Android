@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.ui.search
+package com.example.challengeonairandroid.view.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
