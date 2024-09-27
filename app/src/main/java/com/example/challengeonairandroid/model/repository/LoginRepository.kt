@@ -49,8 +49,8 @@ class LoginRepository @Inject constructor(
 
             if (accessToken != null && refreshToken != null) {
                 saveTokens(accessToken, refreshToken)
-                // 여기서 실제 사용자 정보를 가져오는 API 호출을 해야 합니다.
-                val userInfo = UserInfo("Test User", "12345")
+                //TODO:사용자 정보 가져오는 API 호출해야함
+                val userInfo = UserInfo("Test User", "12345") //dummy UserInfo
                 Result.success(userInfo)
             } else {
                 Result.failure(Exception("Login failed: Tokens not found in URL"))
