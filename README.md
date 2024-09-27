@@ -1,49 +1,52 @@
 # Team24_Android
 
-# 🤖 Android Project README
+## 4주차 코드 리뷰
 
-## 📑 목차
-1. [코딩 컨벤션](#-코딩-컨벤션)
-2. [커밋 컨벤션](#-커밋-컨벤션)
-3. [PR 규칙](#-pr-규칙)
-4. [Ground Rules](#-ground-rules)
+### ✨ 세부 사항
 
-## 💻 코딩 컨벤션
+#### 1. [마이페이지 진입 화면 구성]
+- activity_my_page.xml
+- waiting_challenge_item.xml
 
-1. ✂️ 불필요한 코드는 삭제한다.
-2. 📦 매개변수 4개 이상 시, 데이터 클래스 생성 후 전달한다.
-3. 🔄 ListView 사용을 지양하고 RecyclerView 사용을 권장한다.
-4. 🎯 코드 depth가 최대 3을 넘지 않도록 한다.
-5. 📏 함수 길이를 최대 20줄로 제한한다.
-6. 📚 의존성 관리:
-   - 🌐 앱 전체에서 필요한 의존성은 앱 모듈에 정의한다.
-   - 🧩 특정 기능에서만 사용되는 의존성은 해당 기능 모듈에 정의한다.
-7. 📝 함수 문서화:
-   - 💡 함수 기능에 대한 요약을 함수 앞에 주석을 이용해 명시한다.
-   - ⏳ 당장 구현할 수 없는 함수의 경우, TODO 주석으로 구현해야 할 기능을 작성한다.
+#### 2. [마이페이지 기록 화면 구성]
+- activity_my_page_history.xml
+- history_item.xml
 
-### 참고 문서 🔗
-- [Kotlin 공식 코딩 컨벤션](https://kotlinlang.org/docs/coding-conventions.html)
-- [Android 개발자 Kotlin 스타일 가이드](https://developer.android.com/kotlin/style-guide?hl=ko)
-- [Android 리소스 네이밍 컨벤션](https://medium.com/@ajayjg/ids-layouts-resource-file-naming-android-naming-convention-3fc16e39721d)
+#### 3. [패키지 구조 변경]
+- 기존의 3-tier architecture 식 패키지 구조에서 MVVM 패턴을 더 잘 드러내는 구조로 변경
+- **api**: 
+  - 각 repository에서 공통적으로 호출할 수 있는 api 호출 인터페이스들의 모음인 `ApiService.kt` 포함
 
-## 📝 커밋 컨벤션
+- **di**: 
+  - `NetworkModule`: 통신과 관련된 retrofit, ApiService 등의 의존성을 주입
+  - `AppModule`: 추후 앱 전역에서 사용할 클래스들의 의존성을 주입
 
-- 🔍 커밋 메시지 작성법은 [AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)을 원칙으로 한다.
+- **repository**: 
+  - 각 섹션의 repository 파일들 포함
+  - 해당 섹션에서 호출할 API 함수들을 포함
+  - ApiService의 인터페이스를 사용
 
-## 🔄 PR 규칙
+- **view**: 
+  - 각 섹션의 view 파일들 포함
 
-1. 👥 1명 이상의 팀원에게 리뷰 또는 댓글을 받고 Merge를 진행한다.
-2. 🗓️ 개개인은 매주 최소 1회 PR을 생성한다.
-3. 🔀 매주 Weekly 브랜치에서 1차 conflict 해결을 진행한다.
-4. 🌿 Develop 브랜치에서 2차 conflict 해결을 진행한다.
+#### 4. MyPage 섹션의 View, Repository 제작
+- ViewModel 부분:
+  - 네비게이션 전략과 함께 LiveData, ViewModel의 작동 원리에 대한 스터디 진행 후 작성 예정
 
-## 🌟 Ground Rules
+- Repository:
+  - 백엔드와 소통하여 API 명세를 바탕으로 제작
+  - [API 문서 링크](#) (실제 링크로 교체 필요)
 
-1. 📢 개인 작업 상황은 매일 간단하게 공유한다 (작업 진행 상태, 완료 여부 등).
-2. 🛠️ gradle 수정 시 팀원들에게 즉시 알린다.
-3. 📊 dependency 관련 변경사항은 노션 내 'dependency' 페이지에 업데이트한다.
+### ❓ 질문 사항
 
----
+#### 1. 레이아웃 요소 크기에 대하여
+피그마에 디자인 된 요소를 레이아웃을 구성해보면서 요소의 크기들을 다 피그마에 맞추는 것이 맞는지, 아니면 실행하면서 크기를 보고 결정하는 게 맞는지 고민이 굉장히 많이 됐습니다.
+멘토님께서는 레이아웃 요소들의 크기를 어떻게 결정하는지 알고 싶습니다.
 
-> 💡 **Note**: 이 README는 프로젝트의 기본 가이드라인을 제공합니다. 팀의 필요에 따라 지속적으로 업데이트됩니다.
+#### 2. 네비게이션에 대하여
+원래는 JetPack Navigation을 사용하여 네비게이션을 관리하려고 했는데, 소규모 프로젝트에서 네비게이션을 쓸 필요가 없다는 피드백을 받은 적이 있습니다. 그럴 경우, 어떻게 네비게이션을 처리하는 지 궁금합니다.
+
+—
+
+### 🔗 피그마 링크  
+[피그마 디자인 보기](https://www.figma.com/design/t14LOydaYTHOitC2Q7bwMf/%EC%8B%A4%EC%8B%9C%EA%B0%84%EC%B1%8C%EB%A6%B0%EC%A7%80?node-id=0-1&t=sfSd5mXgkwwuwp4c-1)
