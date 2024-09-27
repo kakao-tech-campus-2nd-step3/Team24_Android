@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/history_date"
+        android:textColor="#5D5D5D"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivChallengeCover"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/rounded_cover"
+        android:src="@drawable/sample_history_cover"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutBadge"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TextView
+            android:id="@+id/tvSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_badge"
+            android:backgroundTint="#B2F1A4"
+            android:padding="3dp"
+            android:text="@string/success"
+            android:textColor="#2C8E50"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvFail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_badge"
+            android:backgroundTint="#FFE3E1"
+            android:padding="3dp"
+            android:text="@string/fail"
+            android:textColor="#FF3B30"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvMade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_badge"
+            android:backgroundTint="#CACACA"
+            android:padding="3dp"
+            android:text="@string/made"
+            android:textColor="#5D5D5D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTitle"
+            android:padding="3dp"
+            android:text="@string/challenge_title"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:layout_marginStart="4dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/layoutBadge">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clock"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/clock_image" />
+
+        <TextView
+            android:id="@+id/tvStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_time"
+            android:textSize="13sp"
+            android:textColor="#5D5D5D"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tilde"
+            android:textSize="13sp"
+            android:textColor="#5D5D5D"/>
+
+        <TextView
+            android:id="@+id/tvEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_time"
+            android:textSize="13sp"
+            android:textColor="#5D5D5D"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dot"
+            android:textColor="#C8DDDE"/>
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_book"
+            android:textSize="13sp"
+            android:textColor="#5D5D5D"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/layoutClock">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fee"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/tvFee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fee_30"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refunds"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvRefunds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refunds_400"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/points"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

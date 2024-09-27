@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChallengeOnAirAndroid"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.mypage.history.MyPageHistory"
+            android:exported="false" />
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="true"
