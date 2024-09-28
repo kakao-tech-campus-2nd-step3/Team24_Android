@@ -3,51 +3,51 @@ package com.example.challengeonairandroid.view.mypage
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
+import com.example.challengeonairandroid.databinding.WaitingChallengeItemBinding
 import com.example.challengeonairandroid.model.data.Challenge
-import com.example.challengeonairandroid.model.data.User
 
 class WaitingChallengeAdapter(
-    private val waitingChallengeList: List<Challenge>,
-    private val user: User
+    private var waitingChallengeList: LiveData<List<Challenge>>,
+    private var userId: LiveData<Long>
 ) : RecyclerView.Adapter<WaitingChallengeAdapter.WaitingChallengeViewHolder>() {
 
-    // ViewHolder 클래스
-    class WaitingChallengeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val challengeTitle: TextView = itemView.findViewById(R.id.tvChallengeName)
-        val challengeStatus: TextView = itemView.findViewById(R.id.tvMadeByMe)
-        val challengeImage: ImageView = itemView.findViewById(R.id.ivChallengeImg)
-    }
+    class WaitingChallengeViewHolder(val binding: WaitingChallengeItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    // 아이템 레이아웃을 ViewHolder로 변환
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaitingChallengeViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.waiting_challenge_item, parent, false)
-        return WaitingChallengeViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val waitingChallengeItemBinding = WaitingChallengeItemBinding.inflate(layoutInflater, parent, false)
+        return WaitingChallengeViewHolder(waitingChallengeItemBinding)
     }
 
-    // ViewHolder에 데이터를 바인딩
     override fun onBindViewHolder(holder: WaitingChallengeViewHolder, position: Int) {
-        val currentChallenge = waitingChallengeList[position]
-        holder.challengeTitle.text = currentChallenge.challengeName
-        if (currentChallenge.hostId == user.userId) {
-            holder.challengeStatus.visibility = View.VISIBLE
+        val currentChallenge = waitingChallengeList.value?.get(position)
+        val currentUserId = userId.value
+
+        if (currentChallenge != null) {
+            holder.binding.tvChallengeName.text = currentChallenge.challengeName
+        }
+
+        Glide.with(holder.itemView.context)
+            .load(currentChallenge!!.challengeImgUrl)
+            .placeholder(R.drawable.sample_challenge_thumbnail)
+            .into(holder.binding.ivChallengeImg)
+
+        if (currentChallenge.hostId == currentUserId) {
+            holder.binding.tvMyCreatedBanner.visibility = View.VISIBLE
         }
         else {
-            holder.challengeStatus.visibility = View.GONE
+            holder.binding.tvMyCreatedBanner.visibility = View.GONE
         }
-        Glide.with(holder.itemView.context)
-            .load(currentChallenge.imageUrl)
-            .placeholder(R.drawable.sample_challenge_thumbnail)
-            .into(holder.challengeImage)
+
+        holder.binding.executePendingBindings()
+
     }
 
-    // 아이템의 수 반환
     override fun getItemCount(): Int {
-        return waitingChallengeList.size
+        return waitingChallengeList.value?.size ?: 0
     }
 }
