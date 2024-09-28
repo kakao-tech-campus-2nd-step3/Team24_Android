@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.model
+package com.example.challengeonairandroid.model.data
 
 data class User(
     val userId: Long,

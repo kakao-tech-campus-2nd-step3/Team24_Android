@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.model
+package com.example.challengeonairandroid.model.data
 
 data class Challenge(
     val challengeId: Long,

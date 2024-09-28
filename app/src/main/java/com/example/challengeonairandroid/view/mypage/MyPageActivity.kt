@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.model.Challenge
-import com.example.challengeonairandroid.model.User
+import com.example.challengeonairandroid.model.data.Challenge
+import com.example.challengeonairandroid.model.data.User
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
