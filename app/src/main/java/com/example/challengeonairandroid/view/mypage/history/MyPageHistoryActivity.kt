@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.mypage
+package com.example.challengeonairandroid.view.mypage.history
 
 import android.os.Bundle
 import androidx.activity.viewModels

@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mypage.history.MyPageHistory">
+    tools:context=".view.mypage.history.MyPageHistoryActivity">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -30,7 +30,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
-    </Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
