@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageBinding
 import com.example.challengeonairandroid.view.home.HomeActivity
+import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,5 +51,12 @@ class MyPageActivity : AppCompatActivity() {
         home.setOnClickListener {
             startActivity(homeIntent)
         }
+
+        val search = myPageBinding.ibSearch
+        val searchIntent = Intent(this, SearchActivity::class.java)
+        search.setOnClickListener {
+            startActivity(searchIntent)
+        }
+
     }
 }

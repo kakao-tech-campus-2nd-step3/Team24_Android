@@ -36,10 +36,13 @@
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".view.mypage.MyPageHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.mypage.MyPageActivity"
             android:exported="false" />
         <activity
-            android:name=".view.mypage.MyPageHistoryActivity"
+            android:name=".view.search.SearchActivity"
             android:exported="false" />
 
     </application>
