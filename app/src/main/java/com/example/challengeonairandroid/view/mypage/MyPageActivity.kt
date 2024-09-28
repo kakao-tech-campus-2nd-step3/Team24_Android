@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageBinding
+import com.example.challengeonairandroid.view.home.HomeActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +43,12 @@ class MyPageActivity : AppCompatActivity() {
         val historyIntent = Intent(this, MyPageHistoryActivity::class.java)
         challengeHistory.setOnClickListener {
             startActivity(historyIntent)
+        }
+
+        val home = myPageBinding.ibHome
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        home.setOnClickListener {
+            startActivity(homeIntent)
         }
     }
 }
