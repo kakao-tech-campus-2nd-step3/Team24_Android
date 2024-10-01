@@ -3,10 +3,10 @@ package com.example.challengeonairandroid.model.data
 data class Challenge(
     val hostId: Long,
     val challengeId: Long,
-    val categoryId: Int? = null,
-    var challengeImgUrl: String? = null,
+    val categoryId: Int,
+    var challengeImgUrl: String,
     var challengeName: String,
-    val challengeBody: String? = null,
+    val challengeBody: String,
     val challengePoint: Int,
     val challengeDate: String,
     val startTime: String,

@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.model.api.api_response
+package com.example.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.model.api.api_response
+package com.example.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -17,7 +17,7 @@ data class ChallengeResponse(
 )
 
 data class ChallengeCategoryResponse(
-    @SerializedName("challenges") val challenges: List<HistoryChallengeResponse>
+    @SerializedName("challenges") val challenges: List<ChallengeResponse>
 )
 
 data class ChallengeCreationRequest(

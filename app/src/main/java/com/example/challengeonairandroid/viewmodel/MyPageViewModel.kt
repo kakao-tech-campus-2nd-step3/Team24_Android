@@ -3,71 +3,101 @@ package com.example.challengeonairandroid.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.model.data.User
-//import com.example.challengeonairandroid.model.repository.MyPageRepository
-//import dagger.hilt.android.lifecycle.HiltViewModel
-//import javax.inject.Inject
-//
-//@HiltViewModel
-//class MyPageViewModel @Inject constructor(private val myPageRepository: MyPageRepository) : ViewModel() {
-//
-//}
+import com.example.challengeonairandroid.model.repository.ChallengeRepository
+import com.example.challengeonairandroid.model.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyPageViewModel : ViewModel() {
+@HiltViewModel
+class MyPageViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val challengeRepository: ChallengeRepository
+) : ViewModel() {
 
-    // 사용자
     private val _user = MutableLiveData<User>()
-    val user: LiveData<User> get() = _user
+    val user: LiveData<User> = _user
 
-    // 사용자 ID
     private val _userId = MutableLiveData<Long>()
-    val userId: LiveData<Long> get() = _userId
+    val userId: LiveData<Long> = _userId
 
-    // 사용자 이름
     private val _userName = MutableLiveData<String>()
-    val userName: LiveData<String> get() = _userName
+    val userName: LiveData<String> = _userName
 
-    // 사용자 프로필 이미지 URL
     private val _userImgUrl = MutableLiveData<String>()
-    val userImgUrl: LiveData<String> get() = _userImgUrl
+    val userImgUrl: LiveData<String> = _userImgUrl
 
-    // 사용자 포인트
     private val _userPoint = MutableLiveData<Int>()
-    val userPoint: LiveData<Int> get() = _userPoint
+    val userPoint: LiveData<Int> = _userPoint
 
-    // 도전한 챌린지 수
     private val _tryChallenge = MutableLiveData<Int>()
-    val tryChallenge: LiveData<Int> get() = _tryChallenge
+    val tryChallenge: LiveData<Int> = _tryChallenge
 
-    // 성공한 챌린지 수
     private val _successChallenge = MutableLiveData<Int>()
-    val successChallenge: LiveData<Int> get() = _successChallenge
+    val successChallenge: LiveData<Int> = _successChallenge
 
-    // 내가 만든 챌린지 수
     private val _myCreatedChallenge = MutableLiveData<Int>()
-    val myCreatedChallenge: LiveData<Int> get() = _myCreatedChallenge
+    val myCreatedChallenge: LiveData<Int> = _myCreatedChallenge
 
-    // 대기 중인 챌린지 수
     private val _numWaitingChallenge = MutableLiveData<Int>()
-    val numWaitingChallenge: LiveData<Int> get() = _numWaitingChallenge
+    val numWaitingChallenge: LiveData<Int> = _numWaitingChallenge
 
-    // 대기 중인 챌린지 리스트
     private val _waitingChallenges = MutableLiveData<List<Challenge>>()
-    val waitingChallenges: LiveData<List<Challenge>> get() = _waitingChallenges
+    val waitingChallenges: LiveData<List<Challenge>> = _waitingChallenges
 
-    // 대기 중인 챌린지 호스트 ID
     private val _waitingChallengeHostId = MutableLiveData<Long>()
-    val waitingChallengeHostId: LiveData<Long> get() = _waitingChallengeHostId
+    val waitingChallengeHostId: LiveData<Long> = _waitingChallengeHostId
 
-    // 대기 중인 챌린지 이미지 URL
     private val _waitingChallengeImgUrl = MutableLiveData<String>()
-    val waitingChallengeImgUrl: LiveData<String> get() = _waitingChallengeImgUrl
+    val waitingChallengeImgUrl: LiveData<String> = _waitingChallengeImgUrl
 
-    // 대기 중인 챌린지 이름
     private val _waitingChallengeName = MutableLiveData<String>()
-    val waitingChallengeName: LiveData<String> get() = _waitingChallengeName
+    val waitingChallengeName: LiveData<String> = _waitingChallengeName
 
+    init {
+        loadUserData()
+        loadChallengeData()
+    }
+
+    private fun loadUserData() {
+        viewModelScope.launch {
+            try {
+                val user = userRepository.getUserData()
+                _user.value = user
+                _userId.value = user.userId
+                _userName.value = user.userName
+                _userImgUrl.value = user.userImgUrl
+                _userPoint.value = user.userPoint
+            } catch (e: Exception) {
+                // Handle error
+            }
+        }
+    }
+
+    private fun loadChallengeData() {
+        viewModelScope.launch {
+            try {
+                val challengeData = challengeRepository.getChallenges()
+                _tryChallenge.value = challengeData.tryCount
+                _successChallenge.value = challengeData.successCount
+                _myCreatedChallenge.value = challengeData.createdCount
+                _numWaitingChallenge.value = challengeData.waitingCount
+                _waitingChallenges.value = challengeData.waitingChallenges
+
+                challengeData.waitingChallenges.firstOrNull()?.let { challenge ->
+                    _waitingChallengeHostId.value = challenge.hostId
+                    _waitingChallengeImgUrl.value = challenge.imgUrl
+                    _waitingChallengeName.value = challenge.name
+                }
+            } catch (e: Exception) {
+                // Handle error
+            }
+        }
+    }
+}
 
     fun initData() {
         val user = User(
@@ -128,17 +158,15 @@ class MyPageViewModel : ViewModel() {
             )
         )
 
-        _userId.value = user.userId
-
-        _waitingChallenges.value = challenges
-        _tryChallenge.value = 5
-        _successChallenge.value = 4
-        _numWaitingChallenge.value = challenges.size
-
-        if (challenges.isNotEmpty()) {
-            _waitingChallengeImgUrl.value = challenges[0].challengeImgUrl
-            _waitingChallengeName.value = challenges[0].challengeName
-            _waitingChallengeHostId.value = challenges[0].hostId
-        }
-    }
+//        _userId.value = user.userId
+//
+//        _waitingChallenges.value = challenges
+//        _tryChallenge.value = 5
+//        _successChallenge.value = 4
+//        _numWaitingChallenge.value = challenges.size
+//
+//        if (challenges.isNotEmpty()) {
+//            _waitingChallengeImgUrl.value = challenges[0].challengeImgUrl
+//            _waitingChallengeName.value = challenges[0].challengeName
+//            _waitingChallengeHostId.value = challenges[0].hostId
 }

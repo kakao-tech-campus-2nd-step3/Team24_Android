@@ -3,7 +3,6 @@ package com.example.challengeonairandroid.model.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.example.challengeonairandroid.model.api.ApiService
 import com.example.challengeonairandroid.model.data.auth.AuthInterceptor
 import com.example.challengeonairandroid.model.data.auth.TokenManager
 import com.example.challengeonairandroid.model.data.auth.encryptedDataStore

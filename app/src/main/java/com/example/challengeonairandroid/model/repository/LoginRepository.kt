@@ -3,7 +3,6 @@ package com.example.challengeonairandroid.model.repository
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.example.challengeonairandroid.model.api.ApiService
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,7 +22,6 @@ data class ReissueTokenResponse(val accessToken: String, val refreshToken: Strin
 
 @Singleton
 class LoginRepository @Inject constructor(
-    private val apiService: ApiService,
     @ApplicationContext private val context: Context
 ) {
     companion object {
