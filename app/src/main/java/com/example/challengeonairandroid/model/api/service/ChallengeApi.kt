@@ -15,6 +15,7 @@ interface ChallengeApi {
         @Path("challenge_id") challengeId: Long,
         @Body date: String
     ): Response<ChallengeResponse>
+    // http 요청을 API 명세에 맞게 보내고 DTO에 맞는 객체가 담긴 Response 객체를 서버로부터 받아옴.
 
     @GET("api/challenges/{category_id}")
     suspend fun getChallengesByCategory(
