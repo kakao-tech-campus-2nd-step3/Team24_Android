@@ -28,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/sample_challenge_thumbnail"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/challenge_image_descriptio" />
 
             <!-- tvMyCreatedBanner : 내가 만든 챌린지 배너 -->
             <TextView
@@ -36,9 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:background="@color/my_page_gray_transparent"
-                android:gravity="left|top"
-                android:text="내가 만든"
+                android:background="@color/gray_transparent"
+                android:gravity="start|top"
+                android:text="@string/my_created_banner"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -52,7 +53,7 @@
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="[챌린지이름] 하하하하"
+        android:hint="@string/challenge_title_example"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvChallengeThumbnail"
