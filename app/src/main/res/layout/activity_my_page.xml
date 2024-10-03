@@ -104,7 +104,6 @@
 
         </LinearLayout>
 
-        <!-- 포인트 -->
         <GridLayout
             android:id="@+id/glPoint"
             android:layout_width="wrap_content"
@@ -129,7 +128,7 @@
                 android:layout_column="0"
                 android:layout_gravity="center_vertical" />
 
-            <!-- 포인트 데이터 값 -->
+            <!-- tvPoint : 포인트 데이터 값 -->
             <TextView
                 android:id="@+id/tvPoint"
                 android:layout_width="wrap_content"
@@ -155,7 +154,6 @@
 
         </GridLayout>
 
-        <!-- 챌린지 목록 -->
         <GridLayout
             android:id="@+id/glChallengeList"
             android:layout_width="wrap_content"
@@ -178,7 +176,7 @@
                 android:layout_row="0"
                 android:layout_column="0" />
 
-            <!-- 도전한 챌린지 수 데이터 값 -->
+            <!-- tvNumTry : 도전한 챌린지 수 데이터 값 -->
             <TextView
                 android:id="@+id/tvNumTry"
                 android:layout_width="wrap_content"
@@ -201,7 +199,7 @@
                 android:layout_row="0"
                 android:layout_column="1" />
 
-            <!-- 성공한 챌린지 수 데이터 값 -->
+            <!-- tvNumSuccess : 성공한 챌린지 수 데이터 값 -->
             <TextView
                 android:id="@+id/tvNumSuccess"
                 android:layout_width="wrap_content"
@@ -224,7 +222,7 @@
                 android:layout_row="0"
                 android:layout_column="2" />
 
-            <!-- 내가 만든 챌린지 수 데이터 값 -->
+            <!-- tvMyCreated : 내가 만든 챌린지 수 데이터 값 -->
             <TextView
                 android:id="@+id/tvMyCreated"
                 android:layout_width="wrap_content"
@@ -281,7 +279,7 @@
 
         </LinearLayout>
 
-        <!-- 대기 중인 챌린지 목록 -->
+        <!-- rvWaitingChallengeList : 대기 중인 챌린지 목록 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvWaitingChallengeList"
             android:layout_width="match_parent"

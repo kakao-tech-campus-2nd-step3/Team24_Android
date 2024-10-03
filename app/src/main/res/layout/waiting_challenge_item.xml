@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- ivChallengeImg : 챌린지 사진 url -->
             <ImageView
                 android:id="@+id/ivChallengeImg"
                 android:layout_width="match_parent"
@@ -29,6 +30,7 @@
                 android:src="@drawable/sample_challenge_thumbnail"
                 android:scaleType="centerCrop" />
 
+            <!-- tvMyCreatedBanner : 내가 만든 챌린지 배너 -->
             <TextView
                 android:id="@+id/tvMyCreatedBanner"
                 android:layout_width="wrap_content"
@@ -44,7 +46,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- 챌린지 이름 데이터 값 -->
+    <!-- tvChallengeName : 챌린지 이름 데이터 값 -->
     <TextView
         android:id="@+id/tvChallengeName"
         android:layout_width="96dp"
