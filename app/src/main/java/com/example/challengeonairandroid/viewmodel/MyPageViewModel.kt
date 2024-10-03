@@ -36,6 +36,15 @@ class MyPageViewModel @Inject constructor(
 
     private val accessToken = "accessToken"
 
+    private val _successChallengeNum = MutableStateFlow<Int>(0)
+    val successChallengeNum: StateFlow<Int> = _successChallengeNum.asStateFlow()
+
+    private val _tryChallengeNum = MutableStateFlow<Int>(0)
+    val tryChallengeNum: StateFlow<Int> = _tryChallengeNum.asStateFlow()
+
+    private val _myCreatedChallengeNum = MutableStateFlow<Int>(0)
+    val myCreatedChallengeNum: StateFlow<Int> = _myCreatedChallengeNum.asStateFlow()
+
     init {
         loadAllHistories()
         loadUserData()
@@ -63,6 +72,12 @@ class MyPageViewModel @Inject constructor(
                 isHost = historyResponse.isHost
             )
         }
+        val successCount = histories.count { it.isSucceed }
+        _successChallengeNum.value = successCount
+        val tryCount = histories.size
+        _tryChallengeNum.value = tryCount
+        val myCreateCount = histories.count { it.isHost }
+        _myCreatedChallengeNum.value = myCreateCount
     }
 
     private fun loadUserData() {
