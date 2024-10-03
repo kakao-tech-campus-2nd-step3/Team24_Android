@@ -64,5 +64,12 @@
     <string name="max_num">4명</string>
     <string name="set_challenge_image">이미지를 설정해주세요</string>
     <string name="previous_button">이전</string>
-    <string name="next_button">다음</string>res
+    <string name="next_button">다음</string>
+    <string name="set_start_time">시작 시간을 설정해주세요</string>
+    <string name="start_time_button">시작 시간</string>
+    <string name="complete_setting_button">설정 완료</string>
+    <string name="end_time_button">종료 시간</string>
+    <string name="set_point_button">요금 설정</string>
+    <string name="set_point">원하는 포인트를 설정해주세요</string>
+    <string name="current_point">현재 잔액 포인트 : 1000 P</string>res
 </resources>
