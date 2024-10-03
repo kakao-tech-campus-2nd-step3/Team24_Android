@@ -44,4 +44,25 @@
     <string name="challenge_image_descriptio">챌린지 이미지</string>
     <string name="my_created_banner">내가 만든</string>
     <string name="challenge_title_example">[챌린지이름] 하하하하</string>
+    <string name="challenge_image_description">챌린지 이미지</string>
+    <string name="challenge_step1">1</string>
+    <string name="challenge_step2">2</string>
+    <string name="create_challenge">챌린지 생성하기</string>
+    <string name="select_challenge_category">원하는 카테고리를 선택해주세요</string>
+    <string name="category_exercise">운동</string>
+    <string name="category_development">자기계발</string>
+    <string name="category_hobby">취미</string>
+    <string name="category_study">공부</string>
+    <string name="input_challenge_title">챌린지 제목을 입력해주세요</string>
+    <string name="edittext_placeholder">자유롭게 남겨주세요</string>
+    <string name="input_challenge_body">챌린지 내용과 인증방식을 공유해주세요</string>
+    <string name="set_challenge_min">챌린지 최소 인원을 설정해주세요</string>
+    <string name="set_challenge_max">챌린지 최대 인원을 설정해주세요</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="min_num">1명</string>
+    <string name="max_num">4명</string>
+    <string name="set_challenge_image">이미지를 설정해주세요</string>
+    <string name="previous_button">이전</string>
+    <string name="next_button">다음</string>res
 </resources>
