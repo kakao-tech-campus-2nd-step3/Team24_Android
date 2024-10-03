@@ -3,50 +3,46 @@ package com.example.challengeonairandroid.view.mypage
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.WaitingChallengeItemBinding
+import com.example.challengeonairandroid.model.data.Challenge
+import com.example.challengeonairandroid.model.data.FakeLocalData
 
 class WaitingChallengeAdapter(
-    private var waitingChallengeList: LiveData<List<Challenge>>,
-    private var userId: LiveData<Long>
+    private val waitingChallengeList: List<Challenge>,
 ) : RecyclerView.Adapter<WaitingChallengeAdapter.WaitingChallengeViewHolder>() {
 
-    class WaitingChallengeViewHolder(val binding: WaitingChallengeItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class WaitingChallengeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val challengeTitle: TextView = itemView.findViewById(R.id.tvChallengeName)
+        val challengeStatus: TextView = itemView.findViewById(R.id.tvMyCreatedBanner)
+        val challengeImage: ImageView = itemView.findViewById(R.id.ivChallengeImg)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaitingChallengeViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val waitingChallengeItemBinding = WaitingChallengeItemBinding.inflate(layoutInflater, parent, false)
-        return WaitingChallengeViewHolder(waitingChallengeItemBinding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.waiting_challenge_item, parent, false)
+        return WaitingChallengeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: WaitingChallengeViewHolder, position: Int) {
-        val currentChallenge = waitingChallengeList.value?.get(position)
-        val currentUserId = userId.value
-
-        if (currentChallenge != null) {
-            holder.binding.tvChallengeName.text = currentChallenge.challengeName
-        }
-
-        Glide.with(holder.itemView.context)
-            .load(currentChallenge!!.challengeImgUrl)
-            .placeholder(R.drawable.sample_challenge_thumbnail)
-            .into(holder.binding.ivChallengeImg)
-
-        if (currentChallenge.hostId == currentUserId) {
-            holder.binding.tvMyCreatedBanner.visibility = View.VISIBLE
+        val currentChallenge = waitingChallengeList[position]
+        holder.challengeTitle.text = currentChallenge.challengeName
+        if (currentChallenge.hostId == FakeLocalData.getUserId()) {
+            holder.challengeStatus.visibility = View.VISIBLE
         }
         else {
-            holder.binding.tvMyCreatedBanner.visibility = View.GONE
+            holder.challengeStatus.visibility = View.GONE
         }
-
-        holder.binding.executePendingBindings()
-
+        Glide.with(holder.itemView.context)
+            .load(currentChallenge.imageUrl)
+            .placeholder(R.drawable.sample_challenge_thumbnail)
+            .into(holder.challengeImage)
     }
 
     override fun getItemCount(): Int {
-        return waitingChallengeList.value?.size ?: 0
+        return waitingChallengeList.size
     }
 }
