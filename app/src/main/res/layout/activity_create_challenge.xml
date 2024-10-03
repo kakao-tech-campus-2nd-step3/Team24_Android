@@ -1,10 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.challenge.CreateChallengeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/llChallengeCreateStep"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnChallengeStep1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/create_challenge_selected_button"
+            android:text="@string/challenge_step1"
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btnChallengeStep2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/create_challenge_unselected_button"
+            android:text="@string/challenge_step2"
+            android:textColor="@color/black"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_below="@+id/llChallengeCreateStep"
+        android:layout_above="@+id/llBottomButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvChallengeCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="@string/create_challenge"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/llChallengeCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvChallengeCreate">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_challenge_category"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_exercise"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_category_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_development"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_category_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_hobby"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_category_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_study"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_category_button" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeCategory">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_challenge_title"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/create_challenge_edittext"
+                    android:hint="@string/edittext_placeholder"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="20dp"
+                    tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llChallengeTitle">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_challenge_body"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/create_challenge_edittext"
+                    android:hint="@string/edittext_placeholder"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="20dp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeMinNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeBody">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_challenge_min"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginVertical="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/minus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:gravity="center"
+                        android:text="@string/min_num" />
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/plus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeMaxNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeMinNum">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_challenge_max"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginVertical="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/minus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:gravity="center"
+                        android:text="@string/max_num" />
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/plus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llChallengeMaxNum"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:text="@string/set_challenge_image"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:contentDescription="@string/challenge_image_description"
+                    android:src="@drawable/placeholder_challenge_img"
+                    tools:ignore="ImageContrastCheck" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/llBottomButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/background_gray"
+            android:text="@string/previous_button"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/sub_red"
+            android:text="@string/next_button"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
