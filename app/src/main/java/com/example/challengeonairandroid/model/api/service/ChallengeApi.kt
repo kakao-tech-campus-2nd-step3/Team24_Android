@@ -7,9 +7,12 @@ import com.example.challengeonairandroid.model.api.response.ChallengeDeletionRes
 import com.example.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ChallengeApi {
+
     @GET("api/challenges/{challenge_id}")
     suspend fun getChallengeDetails(
         @Path("challenge_id") challengeId: Long,

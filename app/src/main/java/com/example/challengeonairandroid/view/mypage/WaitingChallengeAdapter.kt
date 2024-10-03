@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.WaitingChallengeItemBinding
-import com.example.challengeonairandroid.model.data.Challenge
 
 class WaitingChallengeAdapter(
     private var waitingChallengeList: LiveData<List<Challenge>>,

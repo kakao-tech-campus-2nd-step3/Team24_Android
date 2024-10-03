@@ -1,6 +1,5 @@
 package com.example.challengeonairandroid.model.repository
 
-import com.example.challengeonairandroid.model.data.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
