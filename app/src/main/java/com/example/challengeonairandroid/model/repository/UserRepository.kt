@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.model.repository
 
+import com.example.challengeonairandroid.model.data.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -31,9 +32,7 @@ class UserRepository @Inject constructor(
             // 에러 처리. 여기서는 간단히 기본 User 객체를 반환합니다.
             User(
                 userId = -1,
-                userName = "Unknown",
-                userImgUrl = "",
-                userPoint = 0
+                userName = "Unknown"
             )
         }
     }
