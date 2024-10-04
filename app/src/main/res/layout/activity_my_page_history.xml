@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".view.mypage.MyPageHistoryActivity">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -30,13 +31,15 @@
             android:text="@string/history"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
-    </Toolbar>
+            android:textColor="@color/black" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        tools:listitem="@layout/history_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
