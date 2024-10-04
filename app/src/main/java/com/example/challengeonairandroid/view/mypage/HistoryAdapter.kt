@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.mypage.history
+package com.example.challengeonairandroid.view.mypage
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.model.data.History
@@ -27,8 +28,12 @@ class HistoryAdapter(
         if (challenge != null) {
             // 날짜 설정
             holder.tvDate.text = challenge.challengeDate
-            // 챌린지 이미지 설정
-            holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover)
+
+            // 챌린지 이미지 설정 (Glide 사용)
+            Glide.with(holder.itemView.context)
+                .load(challenge.challengeImgUrl)
+                .placeholder(R.drawable.sample_history_cover) // 로딩 중 보여줄 이미지
+                .into(holder.ivChallengeCover)
 
             // 성공/실패 여부
             if (history.isSucced) {
