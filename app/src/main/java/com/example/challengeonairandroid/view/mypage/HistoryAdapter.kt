@@ -27,8 +27,8 @@ class HistoryAdapter(
         if (challenge != null) {
             // 날짜 설정
             holder.tvDate.text = challenge.challengeDate
-            // 챌린지 이미지 설정 (Glide/Picasso 등을 사용할 수 있습니다)
-            holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover) // 실제 이미지 로드 필요
+            // 챌린지 이미지 설정
+            holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover)
 
             // 성공/실패 여부
             if (history.isSucced) {
