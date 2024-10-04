@@ -27,9 +27,25 @@
 - MyPageRepository.kt
 
 #### 6. [패키지 구조 변경]
-- `ApiService.kt` 삭제, 각 Repository에서 호출할 Api 파일들을 별도로 생성
-- 추후 로컬 데이터베이스 운용을 가정하여 더미 로컬 데이터를 담은 object 생성
-- Entities.kt에 Domain Model 추가
+- 기존의 3-tier architecture 식 패키지 구조에서 MVVM 패턴을 더 잘 드러내는 구조로 변경
+- **api**: 
+  - 각 Repository에서 호출할 Api 파일들을 별도로 생성
+
+- **di**: 
+  - `NetworkModule`: 통신과 관련된 retrofit, ApiService 등의 의존성을 주입
+  - `AppModule`: 추후 앱 전역에서 사용할 클래스들의 의존성을 주입
+
+- **repository**: 
+  - 각 섹션의 repository 파일들 포함
+  - 해당 섹션에서 호출할 API 함수들을 포함
+  - ApiService의 인터페이스를 사용
+
+- **view**: 
+  - 각 섹션의 view 파일들 포함
+
+- **data**:
+  - 추후 로컬 데이터베이스 운용을 가정하여 더미 로컬 데이터를 담은 object 생성
+  - Entities.kt에 Domain Model 추가
 
 ### ❓ 질문 사항
 
