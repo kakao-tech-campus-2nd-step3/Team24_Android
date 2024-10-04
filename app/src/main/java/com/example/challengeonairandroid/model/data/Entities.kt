@@ -4,6 +4,7 @@ data class History(
     val challengeName: String,
     val challengeStartTime: String,
     val challengeEndTime: String,
+    val historyDate: String,
     val isSucceed: Boolean,
     val isHost: Boolean
 )
@@ -37,19 +38,4 @@ data class Participant(
     val participantId: Long,
     val userId: Long,
     val challengeId: Long
-)
-
-val dummyHistory = History(
-    challengeName = "아침 조깅 챌린지",
-    challengeStartTime = "2024-09-01T06:00:00",
-    challengeEndTime = "2024-09-01T07:00:00",
-    isSucceed = true,
-    isHost = false
-)
-
-val dummyUserProfile = UserProfile(
-    userNickName = "김미녁",
-    userBody = "건강한 삶을 추구하는 운동 매니아입니다!",
-    imageUrl = "https://example.com/profile.jpg",
-    point = 150
 )

@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.model.data.History
 
 class HistoryAdapter(
@@ -23,7 +22,7 @@ class HistoryAdapter(
         val history = historyList[position]
 
         // 날짜 설정
-        holder.tvDate.text = "08.24"
+        holder.tvDate.text = history.historyDate
         // 챌린지 이미지 설정 (Glide/Picasso 등을 사용할 수 있습니다)
         holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover) // 실제 이미지 로드 필요
 
@@ -56,7 +55,6 @@ class HistoryAdapter(
         val tvFail: TextView = itemView.findViewById(R.id.tvFail)
         val tvMade: TextView = itemView.findViewById(R.id.tvMade)
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         val tvStartTime: TextView = itemView.findViewById(R.id.tvStartTime)
         val tvEndTime: TextView = itemView.findViewById(R.id.tvEndTime)
     }

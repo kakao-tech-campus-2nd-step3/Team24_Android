@@ -1,6 +1,7 @@
 package com.example.challengeonairandroid.viewmodel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
@@ -158,6 +159,15 @@ class MyPageViewModel @Inject constructor(
     private val _myCreatedChallengeNum = MutableStateFlow<Int>(0)
     val myCreatedChallengeNum: StateFlow<Int> = _myCreatedChallengeNum.asStateFlow()
 
+    private val _successMarked = MutableStateFlow<Int>(View.VISIBLE)
+    val successMarked: StateFlow<Int> = _successMarked.asStateFlow()
+
+    private val _failMarked = MutableStateFlow<Int>(View.VISIBLE)
+    val failMarked: StateFlow<Int> = _failMarked.asStateFlow()
+
+    private val _myCreatedMarked = MutableStateFlow<Int>(View.VISIBLE)
+    val myCreatedMarked: StateFlow<Int> = _myCreatedMarked.asStateFlow()
+
     init {
         loadAllHistories()
         loadUserData()
@@ -181,6 +191,7 @@ class MyPageViewModel @Inject constructor(
                 challengeName = historyResponse.challenge.challengeName,
                 challengeStartTime = historyResponse.challenge.startTime,
                 challengeEndTime = historyResponse.challenge.endTime,
+                historyDate = historyResponse.challenge.challengeDate,
                 isSucceed = historyResponse.isSucceed,
                 isHost = historyResponse.isHost
             )
@@ -191,6 +202,24 @@ class MyPageViewModel @Inject constructor(
         _tryChallengeNum.value = tryCount
         val myCreateCount = histories.count { it.isHost }
         _myCreatedChallengeNum.value = myCreateCount
+        val hostFlag = histories[0].isHost
+        if (hostFlag) {
+            _myCreatedMarked.value = View.VISIBLE
+        }
+        else {
+            _myCreatedMarked.value = View.GONE
+        }
+        val successFlag = histories[0].isSucceed
+        if (successFlag) {
+            _successMarked.value = View.VISIBLE
+            _failMarked.value = View.GONE
+        }
+        else {
+            _successMarked.value = View.GONE
+            _failMarked.value = View.VISIBLE
+        }
+
+
     }
 
     private fun loadUserData() {

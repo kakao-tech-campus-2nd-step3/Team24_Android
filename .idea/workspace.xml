@@ -35,6 +35,16 @@
           <theme>@style/Theme.ChallengeOnAirAndroid</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_profile.xml">
+        <config>
+          <theme>@style/Theme.ChallengeOnAirAndroid</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_profile_activity.xml">
+        <config>
+          <theme>@style/Theme.ChallengeOnAirAndroid</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ongoing_challenge.xml">
         <config>
           <theme>@style/Theme.ChallengeOnAirAndroid</theme>
@@ -61,11 +71,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47a5a68d-bea6-4de4-bc23-c29d9f070a5c" name="Changes" comment="feat: updated Repositories&#10;- MyPageRepository&#10;- ChallengeRepository">
-      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/model/repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/model/repository/UserRepository.kt" afterDir="false" />
+    <list default="true" id="47a5a68d-bea6-4de4-bc23-c29d9f070a5c" name="Changes" comment="feat: Complete MyPage repository, view model, and views&#10;&#10;- Implement MyPageRepository for data handling&#10;- Create MyPageViewModel with necessary state and logic&#10;- Develop MyPage-related views (MyPageActivity, MyPageProfileActivity)&#10;- Add data binding for efficient UI updates&#10;- Integrate view model with repository for data flow">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/model/data/Entities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/model/data/Entities.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/HistoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/HistoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/MyPageHistoryActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/MyPageHistoryActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/MyPageProfileActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/view/mypage/MyPageProfileActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/viewmodel/MyPageViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/challengeonairandroid/viewmodel/MyPageViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_page_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/history_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/history_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +126,11 @@
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -355,7 +379,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727763418145</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wip: MyPageViewModel 3">
+      <option name="closed" value="true" />
+      <created>1728041492669</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728041492669</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,7 +401,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/user/common" />
+                        <option value="origin/Test" />
                       </list>
                     </value>
                   </entry>
@@ -384,6 +416,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created New Packages" />
     <MESSAGE value="feat: updated Repositories&#10;- MyPageRepository&#10;- ChallengeRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: updated Repositories&#10;- MyPageRepository&#10;- ChallengeRepository" />
+    <MESSAGE value="wip: MyPageViewModel 3" />
+    <MESSAGE value="feat: Complete MyPage repository, view model, and views&#10;&#10;- Implement MyPageRepository for data handling&#10;- Create MyPageViewModel with necessary state and logic&#10;- Develop MyPage-related views (MyPageActivity, MyPageProfileActivity)&#10;- Add data binding for efficient UI updates&#10;- Integrate view model with repository for data flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Complete MyPage repository, view model, and views&#10;&#10;- Implement MyPageRepository for data handling&#10;- Create MyPageViewModel with necessary state and logic&#10;- Develop MyPage-related views (MyPageActivity, MyPageProfileActivity)&#10;- Add data binding for efficient UI updates&#10;- Integrate view model with repository for data flow" />
   </component>
 </project>
