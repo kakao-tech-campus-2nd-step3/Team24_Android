@@ -2,6 +2,7 @@ package com.example.challengeonairandroid.view.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageButton
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.model.data.User
 import com.example.challengeonairandroid.view.home.HomeActivity
+import com.example.challengeonairandroid.view.mypage.history.MyPageHistoryActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -90,11 +92,18 @@ class MyPageActivity : AppCompatActivity() {
             )
         )
 
+
         val waitingChallengeRecyclerView = findViewById<RecyclerView>(R.id.rvWaitingChallengeList)
         waitingChallengeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         val waitingChallengeAdapter = WaitingChallengeAdapter(challengeList, user)
         waitingChallengeRecyclerView.adapter = waitingChallengeAdapter
+
+        val challengeProfile = findViewById<Button>(R.id.btnProfileChange)
+        val profileIntent = Intent(this, MyPageProfileActivity::class.java)
+        challengeProfile.setOnClickListener {
+            startActivity(profileIntent)
+        }
 
         val challengeHistory = findViewById<GridLayout>(R.id.glChallengeList)
         val historyIntent = Intent(this, MyPageHistoryActivity::class.java)
