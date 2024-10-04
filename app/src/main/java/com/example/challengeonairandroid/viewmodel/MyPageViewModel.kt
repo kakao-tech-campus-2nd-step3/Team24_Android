@@ -7,7 +7,6 @@ import com.example.challengeonairandroid.model.api.response.ChallengeResponse
 import com.example.challengeonairandroid.model.api.response.HistoryListResponse
 import com.example.challengeonairandroid.model.api.response.HistoryResponse
 import com.example.challengeonairandroid.model.api.response.UserProfileResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateRequest
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.model.data.History
 import com.example.challengeonairandroid.model.data.UserProfile
@@ -229,29 +228,6 @@ class MyPageViewModel @Inject constructor(
                 imageUrl = response.imageUrl,
                 hostId = response.hostId.toLongOrNull() ?: 0L
             )
-        }
-    }
-
-    fun updateUserProfile(userProfileUpdateRequest: UserProfileUpdateRequest) {
-        viewModelScope.launch {
-            _isUpdating.value = true
-            try {
-                val result = myPageRepository.updateUserProfile(userProfileUpdateRequest, accessToken)
-                if (result != null) {
-                    // 업데이트 성공
-                    _updateResult.value = UpdateResult.Success
-                    // 업데이트된 프로필 정보로 UI 갱신
-                    loadUserData()
-                } else {
-                    // 업데이트 실패
-                    _updateResult.value = UpdateResult.Failure("프로필 업데이트에 실패했습니다.")
-                }
-            } catch (e: Exception) {
-                // 예외 발생
-                _updateResult.value = UpdateResult.Failure("오류가 발생했습니다: ${e.message}")
-            } finally {
-                _isUpdating.value = false
-            }
         }
     }
 }

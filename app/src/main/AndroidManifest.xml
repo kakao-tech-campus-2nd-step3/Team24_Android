@@ -42,6 +42,9 @@
             android:name=".view.mypage.MyPageHistoryActivity"
             android:exported="false" />
         <activity
+            android:name=".view.mypage.MyPageProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.search.SearchActivity"
             android:exported="false" />
 

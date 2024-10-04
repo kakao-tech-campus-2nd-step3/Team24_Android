@@ -31,6 +31,12 @@ class MyPageActivity : AppCompatActivity() {
         waitingChallengeAdapter = WaitingChallengeAdapter(myPageViewModel.challenges.value)
         waitingChallengeRecyclerView.adapter = waitingChallengeAdapter
 
+        val challengeProfile = myPageBinding.btnProfileChange
+        val profileIntent = Intent(this, MyPageProfileActivity::class.java)
+        challengeProfile.setOnClickListener {
+            startActivity(profileIntent)
+        }
+
         val challengeHistory = myPageBinding.glChallengeList
         val historyIntent = Intent(this, MyPageHistoryActivity::class.java)
         challengeHistory.setOnClickListener {

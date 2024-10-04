@@ -120,7 +120,7 @@
                 android:layout_margin="20dp"
                 android:rowCount="1"
                 android:columnCount="3"
-                android:background="@color/my_page_background_gray"
+                android:background="@color/background_gray"
                 app:layout_constraintTop_toBottomOf="@id/llUserProfile"
                 app:layout_constraintBottom_toTopOf="@+id/glChallengeList"
                 app:layout_constraintStart_toStartOf="parent">
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:text="포인트"
-                    android:textColor="@color/my_page_text_gray"
+                    android:textColor="@color/text_gray"
                     android:textStyle="bold"
                     android:textSize="13sp"
                     android:layout_row="0"
@@ -145,7 +145,7 @@
                     android:layout_marginRight="10dp"
                     android:hint="8,000 P"
                     android:text="@{String.valueOf(myPageData.userProfile.point)}"
-                    android:textColor="@color/my_page_text_black"
+                    android:textColor="@color/text_black"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_row="0"
@@ -170,7 +170,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:rowCount="2"
                 android:columnCount="4"
-                android:background="@color/my_page_background_gray"
+                android:background="@color/background_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/glPoint"
                 app:layout_constraintBottom_toTopOf="@id/llWaitingChallengeTitle">
@@ -271,7 +271,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="대기 중인 챌린지"
-                    android:textColor="@color/my_page_text_gray"
+                    android:textColor="@color/text_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -283,7 +283,7 @@
                     android:gravity="center"
                     android:hint="3"
                     android:text="@{String.valueOf(myPageData.challenges.size)}"
-                    android:textColor="@color/my_page_text_black"
+                    android:textColor="@color/text_black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -335,7 +335,7 @@
                         android:background="@drawable/my_page_button"
                         android:text="자주 묻는 질문"
                         android:textSize="13sp"
-                        android:textColor="@color/my_page_text_gray" />
+                        android:textColor="@color/text_gray" />
 
                     <Button
                         android:id="@+id/btnAsk"
@@ -346,7 +346,7 @@
                         android:background="@drawable/my_page_button"
                         android:text="문의하기"
                         android:textSize="13sp"
-                        android:textColor="@color/my_page_text_gray" />
+                        android:textColor="@color/text_gray" />
 
                 </LinearLayout>
 
