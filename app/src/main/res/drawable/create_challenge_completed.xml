@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/main_red">
+    <solid android:color="@color/sub_red"/> <!-- 선택되었을 때 배경 색 -->
+    <corners android:radius="8dp"/>
+</shape>

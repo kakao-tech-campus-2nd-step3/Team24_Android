@@ -3,7 +3,6 @@ package com.example.challengeonairandroid.model.repository
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.example.challengeonairandroid.model.api.ApiService
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,7 +22,6 @@ data class ReissueTokenResponse(val accessToken: String, val refreshToken: Strin
 
 @Singleton
 class LoginRepository @Inject constructor(
-    private val apiService: ApiService,
     @ApplicationContext private val context: Context
 ) {
     companion object {
@@ -76,21 +74,21 @@ class LoginRepository @Inject constructor(
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
             .getString(REFRESH_TOKEN_KEY, null)
 
-    suspend fun reissueToken(): Result<ReissueTokenResponse> = withContext(Dispatchers.IO) {
-        try {
-            val refreshToken = getRefreshToken() ?: throw Exception("No refresh token available")
-            val request = ReissueTokenRequest(refreshToken)
-            val response: Response<String> = apiService.post(REISSUE_URL, request)
-
-            if (response.isSuccessful) {
-                val reissueResponse = Json.decodeFromString<ReissueTokenResponse>(response.body() ?: "")
-                saveTokens(reissueResponse.accessToken, reissueResponse.refreshToken)
-                Result.success(reissueResponse)
-            } else {
-                Result.failure(Exception("Token reissue failed: ${response.code()}"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
+//    suspend fun reissueToken(): Result<ReissueTokenResponse> = withContext(Dispatchers.IO) {
+//        try {
+//            val refreshToken = getRefreshToken() ?: throw Exception("No refresh token available")
+//            val request = ReissueTokenRequest(refreshToken)
+//            val response: Response<String> = apiService.post(REISSUE_URL, request)
+//
+//            if (response.isSuccessful) {
+//                val reissueResponse = Json.decodeFromString<ReissueTokenResponse>(response.body() ?: "")
+//                saveTokens(reissueResponse.accessToken, reissueResponse.refreshToken)
+//                Result.success(reissueResponse)
+//            } else {
+//                Result.failure(Exception("Token reissue failed: ${response.code()}"))
+//            }
+//        } catch (e: Exception) {
+//            Result.failure(e)
+//        }
+//    }
 }
