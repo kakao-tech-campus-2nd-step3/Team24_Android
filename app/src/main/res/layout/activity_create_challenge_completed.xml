@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvChallengename"
+                android:id="@+id/tvChallengeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -88,7 +88,7 @@
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvChallengename"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvChallengeTitle"/>
 
             <LinearLayout
                 android:id="@+id/llPeopleNum"
