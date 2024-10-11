@@ -1,10 +1,545 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.challenge.CreateChallengeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/llChallengeCreateStep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp">
+
+            <Button
+                android:id="@+id/btnChallengeStep1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/create_challenge_selected_button"
+                android:text="@string/challenge_step1"
+                android:textColor="@color/white"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/btnChallengeStep2"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/create_challenge_unselected_button"
+                android:text="@string/challenge_step2"
+                android:textColor="@color/black"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvChallengeCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/create_challenge"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svCreateStep1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_below="@+id/llChallengeCreateStep"
+        android:layout_above="@+id/llBottomButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/llChallengeCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_challenge_category"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_exercise"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_radio_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_development"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_radio_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_hobby"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_radio_button" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/category_study"
+                        android:button="@null"
+                        android:background="@drawable/create_challenge_radio_button" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeCategory">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_challenge_title"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/create_challenge_edittext"
+                    android:hint="@string/edittext_placeholder"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="20dp"
+                    tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llChallengeTitle">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_challenge_body"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/create_challenge_edittext"
+                    android:hint="@string/edittext_placeholder"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="20dp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeMinNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeBody">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_challenge_min"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginVertical="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/minus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:gravity="center"
+                        android:text="@string/min_num" />
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/plus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeMaxNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llChallengeMinNum">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_challenge_max"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginVertical="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/minus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:gravity="center"
+                        android:text="@string/max_num" />
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/create_challenge_number_button"
+                        android:text="@string/plus"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChallengeImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llChallengeMaxNum"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:text="@string/set_challenge_image"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:contentDescription="@string/challenge_image_description"
+                    android:src="@drawable/placeholder_challenge_img"
+                    tools:ignore="ImageContrastCheck" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svCreateStep2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="visible"
+        android:layout_below="@+id/llChallengeCreateStep"
+        android:layout_above="@+id/llBottomButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvGuideCreationStep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginVertical="5dp"
+                android:text="@string/set_start_time"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/llSecondStep"/>
+
+            <LinearLayout
+                android:id="@+id/llSecondStep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvGuideCreationStep" >
+
+                <RadioGroup
+                    android:id="@+id/rgSecondStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
+
+                    <RadioButton
+                        android:id="@+id/btnStartTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/start_time_button"
+                        android:button="@null"
+                        android:drawableEnd="@drawable/ic_check"
+                        android:background="@drawable/create_challenge_radio_button"/>
+
+                    <LinearLayout
+                        android:id="@+id/llStartTimeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:visibility="visible">
+
+                        <DatePicker
+                            android:id="@+id/dpStartTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:datePickerMode="calendar"
+                            android:theme="@style/CustomPickerDialog"/>
+
+                        <TimePicker
+                            android:id="@+id/tpStartTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:timePickerMode="spinner"
+                            android:theme="@style/CustomPickerDialog" />
+
+                        <Button
+                            android:id="@+id/btnStartTimeDone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/complete_setting_button"
+                            android:textColor="@color/white"
+                            android:background="@drawable/create_challenge_button"/>
+
+                    </LinearLayout>
+
+                    <RadioButton
+                        android:id="@+id/btnEndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/end_time_button"
+                        android:button="@null"
+                        android:drawableEnd="@drawable/ic_check"
+                        android:background="@drawable/create_challenge_radio_button"/>
+
+                    <LinearLayout
+                        android:id="@+id/llEndTimeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:visibility="visible">
+
+                        <DatePicker
+                            android:id="@+id/dpEndTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:datePickerMode="calendar"
+                            android:theme="@style/CustomPickerDialog"/>
+
+                        <TimePicker
+                            android:id="@+id/tpEndTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:timePickerMode="spinner"
+                            android:theme="@style/CustomPickerDialog" />
+
+
+                        <Button
+                            android:id="@+id/btnEndTimeDone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/complete_setting_button"
+                            android:textColor="@color/white"
+                            android:background="@drawable/create_challenge_button" />
+
+                    </LinearLayout>
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:padding="15dp"
+                        android:text="@string/set_point_button"
+                        android:button="@null"
+                        android:drawableEnd="@drawable/ic_check"
+                        android:background="@drawable/create_challenge_radio_button"/>
+
+                    <LinearLayout
+                        android:id="@+id/llSetChallengePoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:visibility="visible">
+
+                        <EditText
+                            android:id="@+id/etSetChallengePoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/create_challenge_edittext"
+                            android:hint="@string/set_point"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:padding="20dp"
+                            tools:ignore="TextContrastCheck"/>
+
+                        <TextView
+                            android:id="@+id/tvCurrentPoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:text="@string/current_point"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp"/>
+
+                        <Button
+                            android:id="@+id/btnSetPointDone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/complete_setting_button"
+                            android:textColor="@color/white"
+                            android:background="@drawable/create_challenge_button" />
+
+                    </LinearLayout>
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/llBottomButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/background_gray"
+            android:text="@string/previous_button"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/sub_red"
+            android:text="@string/next_button"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

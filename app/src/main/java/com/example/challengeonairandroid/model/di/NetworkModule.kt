@@ -1,10 +1,20 @@
 package com.example.challengeonairandroid.model.di
 
-import com.example.challengeonairandroid.model.api.ApiService
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import com.example.challengeonairandroid.model.api.service.ChallengeApi
+import com.example.challengeonairandroid.model.api.service.HistoryApi
+import com.example.challengeonairandroid.model.api.service.UserProfileApi
+import com.example.challengeonairandroid.model.data.auth.AuthInterceptor
+import com.example.challengeonairandroid.model.data.auth.TokenManager
+import com.example.challengeonairandroid.model.data.auth.encryptedDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -12,25 +22,56 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    // Note
-    // Provides 어노테이션이 붙은 것들에 대해 Inject 어노테이션을 사용하면 개발자가 정의한 방식대로 의존성을 주입
-    // Provides 어노테이션이 붙지 않은 것들에 대해 Inject 어노테이션을 사용하면 Hilt가 자동으로 의존성을 주입
+
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+        return context.encryptedDataStore
+    }
+
+    @Provides
+    @Singleton
+    fun provideTokenManager(dataStore: DataStore<Preferences>): TokenManager {
+        return TokenManager(dataStore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(tokenManager: TokenManager): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(tokenManager))
+            .build()
+    }
+
     @Provides
     @Singleton
     fun provideBaseUrl() = "https://api.example.com/"
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(provideBaseUrl())
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
+    fun provideChallengeApi(retrofit: Retrofit): ChallengeApi {
+        return retrofit.create(ChallengeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHistoryApi(retrofit: Retrofit): HistoryApi {
+        return retrofit.create(HistoryApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi {
+        return retrofit.create(UserProfileApi::class.java)
     }
 }
