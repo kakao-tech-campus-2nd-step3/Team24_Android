@@ -14,11 +14,19 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/ibClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_close"
+            android:background="@android:color/transparent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnChallengeStep1"
