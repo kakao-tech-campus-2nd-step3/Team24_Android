@@ -14,11 +14,19 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/ibClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_close"
+            android:background="@android:color/transparent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnChallengeStep1"
@@ -87,11 +95,13 @@
                     android:textSize="14sp"/>
 
                 <RadioGroup
+                    android:id="@+id/rgChallengeCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <RadioButton
+                        android:id="@+id/rbExercise"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
@@ -101,6 +111,7 @@
                         android:background="@drawable/create_challenge_radio_button" />
 
                     <RadioButton
+                        android:id="@+id/rbDevelopment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
@@ -110,6 +121,7 @@
                         android:background="@drawable/create_challenge_radio_button" />
 
                     <RadioButton
+                        android:id="@+id/rbHobby"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
@@ -119,6 +131,7 @@
                         android:background="@drawable/create_challenge_radio_button" />
 
                     <RadioButton
+                        android:id="@+id/rbStudy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
@@ -149,6 +162,7 @@
                     android:textSize="14sp"/>
 
                 <EditText
+                    android:id="@+id/etChallengeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
@@ -178,6 +192,7 @@
                     android:textSize="14sp"/>
 
                 <EditText
+                    android:id="@+id/etChallengeBody"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
@@ -212,15 +227,16 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btnMinusMinNum"
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/create_challenge_number_button"
                         android:text="@string/minus"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+                        android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/tvMinNum"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="15dp"
@@ -228,13 +244,13 @@
                         android:text="@string/min_num" />
 
                     <Button
+                        android:id="@+id/btnPlusMinNum"
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/create_challenge_number_button"
                         android:text="@string/plus"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -262,15 +278,16 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btnMinusMaxNum"
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/create_challenge_number_button"
                         android:text="@string/minus"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                        android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/tvMaxNum"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="15dp"
@@ -278,13 +295,13 @@
                         android:text="@string/max_num" />
 
                     <Button
+                        android:id="@+id/btnPlusMaxNum"
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/create_challenge_number_button"
                         android:text="@string/plus"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -308,6 +325,7 @@
                     android:textSize="14sp"/>
 
                 <ImageView
+                    android:id="@+id/ivChallengeImg"
                     android:layout_width="88dp"
                     android:layout_height="88dp"
                     android:contentDescription="@string/challenge_image_description"
@@ -357,19 +375,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvGuideCreationStep" >
 
-                <RadioGroup
-                    android:id="@+id/rgSecondStep"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="UselessParent">
 
-                    <RadioButton
+                    <Button
                         android:id="@+id/btnStartTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:padding="15dp"
                         android:text="@string/start_time_button"
+                        android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
                         android:background="@drawable/create_challenge_radio_button"/>
@@ -381,7 +395,7 @@
                         android:layout_margin="20dp"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <DatePicker
                             android:id="@+id/dpStartTime"
@@ -409,13 +423,14 @@
 
                     </LinearLayout>
 
-                    <RadioButton
+                    <Button
                         android:id="@+id/btnEndTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:padding="15dp"
                         android:text="@string/end_time_button"
+                        android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
                         android:background="@drawable/create_challenge_radio_button"/>
@@ -427,7 +442,7 @@
                         android:layout_margin="20dp"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <DatePicker
                             android:id="@+id/dpEndTime"
@@ -456,12 +471,14 @@
 
                     </LinearLayout>
 
-                    <RadioButton
+                    <Button
+                        android:id="@+id/btnSetChallengePoint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:padding="15dp"
                         android:text="@string/set_point_button"
+                        android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
                         android:background="@drawable/create_challenge_radio_button"/>
@@ -473,7 +490,7 @@
                         android:layout_margin="20dp"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <EditText
                             android:id="@+id/etSetChallengePoint"
@@ -505,9 +522,7 @@
                             android:textColor="@color/white"
                             android:background="@drawable/create_challenge_button" />
 
-                    </LinearLayout>
-                </RadioGroup>
-
+                </LinearLayout>
 
             </LinearLayout>
 

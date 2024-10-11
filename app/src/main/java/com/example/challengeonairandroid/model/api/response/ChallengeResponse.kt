@@ -13,7 +13,7 @@ data class ChallengeResponse(
     @SerializedName("min_participant_num") val minParticipantNum: Int,
     @SerializedName("max_participant_num") val maxParticipantNum: Int,
     @SerializedName("current_participant_num") val currentParticipantNum: Int,
-    @SerializedName("host_id") val hostId: String
+    @SerializedName("host_id") val hostId: String,
 )
 
 data class ChallengeCategoryResponse(

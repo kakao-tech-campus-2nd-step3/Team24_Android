@@ -60,8 +60,8 @@
     <string name="set_challenge_max">챌린지 최대 인원을 설정해주세요</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
-    <string name="min_num">1명</string>
-    <string name="max_num">4명</string>
+    <string name="min_num">1</string>
+    <string name="max_num">4</string>
     <string name="set_challenge_image">이미지를 설정해주세요</string>
     <string name="previous_button">이전</string>
     <string name="next_button">다음</string>

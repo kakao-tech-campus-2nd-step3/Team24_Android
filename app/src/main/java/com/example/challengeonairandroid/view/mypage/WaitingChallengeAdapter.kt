@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.model.data.Challenge
-import com.example.challengeonairandroid.model.data.User
+import com.example.challengeonairandroid.model.data.FakeLocalData
 
 class WaitingChallengeAdapter(
     private val waitingChallengeList: List<Challenge>,
-    private val user: User
 ) : RecyclerView.Adapter<WaitingChallengeAdapter.WaitingChallengeViewHolder>() {
 
     class WaitingChallengeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,14 +30,14 @@ class WaitingChallengeAdapter(
     override fun onBindViewHolder(holder: WaitingChallengeViewHolder, position: Int) {
         val currentChallenge = waitingChallengeList[position]
         holder.challengeTitle.text = currentChallenge.challengeName
-        if (currentChallenge.hostId == user.userId) {
+        if (currentChallenge.hostId == FakeLocalData.getUserId()) {
             holder.challengeStatus.visibility = View.VISIBLE
         }
         else {
             holder.challengeStatus.visibility = View.GONE
         }
         Glide.with(holder.itemView.context)
-            .load(currentChallenge.challengeImgUrl)
+            .load(currentChallenge.imageUrl)
             .placeholder(R.drawable.sample_challenge_thumbnail)
             .into(holder.challengeImage)
     }
@@ -47,4 +46,3 @@ class WaitingChallengeAdapter(
         return waitingChallengeList.size
     }
 }
-

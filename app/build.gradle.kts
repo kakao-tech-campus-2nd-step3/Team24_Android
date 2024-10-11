@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.security.crypto)
+    implementation(libs.androidx.databinding.runtime)
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
     testImplementation(libs.junit)
