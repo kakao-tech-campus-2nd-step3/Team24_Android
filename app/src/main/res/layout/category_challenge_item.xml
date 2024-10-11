@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivChallengeCover"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:background="@drawable/rounded_cover"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sample_exercise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2024-10-12"
+        android:textColor="#9E9E9E"
+        android:textSize="10sp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvStartTime"
+        android:text="11:00"
+        android:textColor="#9E9E9E"
+        android:textSize="10sp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/tvDate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTime"
+        android:text="~"
+        android:textColor="#9E9E9E"
+        android:textSize="10sp"
+        android:layout_marginStart="1dp"
+        app:layout_constraintStart_toEndOf="@+id/tvStartTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvEndTime"
+        android:text="13:00"
+        android:textColor="#9E9E9E"
+        android:textSize="10sp"
+        android:layout_marginStart="1dp"
+        app:layout_constraintStart_toEndOf="@+id/tvTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvChallengeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3대 500을 위하여"
+        android:textColor="@color/black"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="운동 · 헬스"
+        android:textColor="#5D5D5D"
+        android:layout_marginStart="8dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/tvChallengeName" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCurrentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textColor="#FF3B30"
+            android:textSize="8sp"
+            />
+
+        <TextView
+            android:id="@+id/tvPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="명 예약중"
+            android:textColor="#FF3B30"
+            android:textSize="8sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_current_num"
+            android:layout_marginStart="4dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_current_num"
+            android:layout_marginStart="1dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_current_num"
+            android:layout_marginStart="1dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_max_num"
+            android:layout_marginStart="1dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
