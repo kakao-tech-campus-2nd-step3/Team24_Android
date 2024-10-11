@@ -31,6 +31,7 @@
             android:text="챌린지가 예약되었습니다"
             android:textStyle="bold"
             android:textSize="24sp"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -64,10 +65,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:padding="5dp"
                 android:text="[운동] ' 3대 500을 위하여 '"
                 android:hint="[운동] ' 3대 500을 위하여 '"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivChallengeImg"/>
@@ -78,9 +81,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:padding="5dp"
                 android:text="2시간 달리기, 지속적으로 달리는 듯한 화면만 나와있으면 인증합니다!"
                 android:hint="2시간 달리기, 지속적으로 달리는 듯한 화면만 나와있으면 인증합니다!"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvChallengename"/>
@@ -101,6 +106,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="인원"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
@@ -130,6 +136,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="챌린지 시간"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
@@ -157,6 +164,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="예약금"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
