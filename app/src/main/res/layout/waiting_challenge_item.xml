@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="myPageData"
-            type="com.example.challengeonairandroid.viewmodel.MyPageViewModel" />
+            name="challenge"
+            type="com.example.challengeonairandroid.model.data.Challenge" />
 
     </data>
 
@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:src="@drawable/sample_challenge_thumbnail"
-                    android:src="@{myPageData.challenges[0].imageUrl}"
+                    android:src="@{challenge.imageUrl}"
                     android:scaleType="centerCrop" />
 
                 <TextView
@@ -47,6 +47,7 @@
                     android:background="@color/gray_transparent"
                     android:gravity="start|top"
                     android:text="내가 만든"
+                    android:visibility="gone"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="[챌린지 간략 설명] 챌린지 제목"
-            android:text="@{String.valueOf(myPageData.challenges[0].challengeName)}"
+            android:text="@{challenge.challengeName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvChallengeThumbnail"
