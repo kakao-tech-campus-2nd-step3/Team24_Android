@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.viewmodel.ChallengeViewModel
+import com.example.challengeonairandroid.viewmodel.ChallengeDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateChallengeActivity : AppCompatActivity() {
-    private val createChallengeViewModel: ChallengeViewModel by viewModels()
+    private val createChallengeDetailViewModel: ChallengeDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

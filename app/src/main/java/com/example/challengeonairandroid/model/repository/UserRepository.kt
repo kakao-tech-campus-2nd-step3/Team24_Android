@@ -1,65 +1,87 @@
 package com.example.challengeonairandroid.model.repository
 
-import com.example.challengeonairandroid.model.data.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.challengeonairandroid.model.api.response.LogoutResponse
+import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
+import com.example.challengeonairandroid.model.api.response.UserRegistrationRequest
+import com.example.challengeonairandroid.model.api.response.UserRegistrationResponse
+import com.example.challengeonairandroid.model.api.service.UserApi
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UserRepository @Inject constructor(
-    private val userApi: UserApi,
-    private val userDao: UserDao
+    private val userApi: UserApi
 ) {
-    suspend fun getUserData(): User = withContext(Dispatchers.IO) {
-        try {
-            // 먼저 로컬 데이터베이스에서 사용자 정보를 가져옵니다.
-            val localUser = userDao.getUser()
+    sealed class UserResult<out T> {
+        data class Success<T>(val data: T) : UserResult<T>()
+        data class Error(val message: String, val code: Int? = null) : UserResult<Nothing>()
+    }
 
-            if (localUser != null) {
-                // 로컬에 데이터가 있으면 그것을 반환합니다.
-                localUser
+    suspend fun registerUser(
+        userName: String,
+        userNickName: String,
+        email: String,
+        password: String
+    ): UserResult<UserRegistrationResponse> {
+        return try {
+            val request = UserRegistrationRequest(
+                userName = userName,
+                userNickName = userNickName,
+                email = email,
+                password = password
+            )
+            val response = userApi.registerUser(request)
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    UserResult.Success(it)
+                } ?: UserResult.Error("Registration failed: Empty response")
             } else {
-                // 로컬에 데이터가 없으면 API로부터 데이터를 가져옵니다.
-                val remoteUser = userApi.fetchUserData()
-
-                // 가져온 데이터를 로컬 데이터베이스에 저장합니다.
-                userDao.insertUser(remoteUser)
-
-                remoteUser
+                UserResult.Error(
+                    message = response.errorBody()?.string() ?: "Registration failed",
+                    code = response.code()
+                )
             }
         } catch (e: Exception) {
-            // 에러 처리. 여기서는 간단히 기본 User 객체를 반환합니다.
-            User(
-                userId = -1,
-                userName = "Unknown"
-            )
+            UserResult.Error("Registration failed: ${e.message}")
         }
     }
 
-    suspend fun updateUserData(user: User) = withContext(Dispatchers.IO) {
-        try {
-            // API를 통해 사용자 정보를 업데이트합니다.
-            userApi.updateUserData(user)
+    suspend fun logout(accessToken: String): UserResult<LogoutResponse> {
+        return try {
+            val response = userApi.logout(accessToken)
 
-            // 로컬 데이터베이스의 사용자 정보도 업데이트합니다.
-            userDao.updateUser(user)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    UserResult.Success(it)
+                } ?: UserResult.Error("Logout failed: Empty response")
+            } else {
+                UserResult.Error(
+                    message = response.errorBody()?.string() ?: "Logout failed",
+                    code = response.code()
+                )
+            }
         } catch (e: Exception) {
-            // 에러 처리
-            throw e
+            UserResult.Error("Logout failed: ${e.message}")
         }
     }
-}
 
-// UserApi 인터페이스 (실제 구현은 별도로 해야 합니다)
-interface UserApi {
-    suspend fun fetchUserData(): User
-    suspend fun updateUserData(user: User)
-}
+    suspend fun deleteUser(accessToken: String): UserResult<UserDeletionResponse> {
+        return try {
+            val response = userApi.deleteUser(accessToken)
 
-// UserDao 인터페이스 (Room 라이브러리를 사용한다고 가정합니다)
-interface UserDao {
-    suspend fun getUser(): User?
-    suspend fun insertUser(user: User)
-    suspend fun updateUser(user: User)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    UserResult.Success(it)
+                } ?: UserResult.Error("Account deletion failed: Empty response")
+            } else {
+                UserResult.Error(
+                    message = response.errorBody()?.string() ?: "Account deletion failed",
+                    code = response.code()
+                )
+            }
+        } catch (e: Exception) {
+            UserResult.Error("Account deletion failed: ${e.message}")
+        }
+    }
 }
