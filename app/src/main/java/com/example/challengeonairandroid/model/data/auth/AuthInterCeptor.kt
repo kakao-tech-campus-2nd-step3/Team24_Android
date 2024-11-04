@@ -5,24 +5,54 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
+import javax.inject.Inject
 
-class AuthInterceptor(private val tokenManager: TokenManager) : Interceptor {
+class AuthInterceptor @Inject constructor(
+    private val tokenManager: TokenManager
+) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
         val originalRequest = chain.request()
-        val accessToken = tokenManager.getAccessToken()
-        val request = originalRequest.newBuilder()
-            .apply {
-                accessToken?.let {
-                    header("Authorization", "Bearer $it")
+        val requestPath = originalRequest.url.encodedPath
+
+        // login, oauth2, reissue 경로는 AccessToken 불필요
+        val request = if (!requestPath.startsWith("/login") &&
+            !requestPath.startsWith("/oauth2") &&
+            !requestPath.startsWith("/reissue")) {
+            // Access Token이 있다면 헤더에 추가
+            val accessToken = tokenManager.getAccessToken()
+            originalRequest.newBuilder()
+                .apply {
+                    accessToken?.let {
+                        header("Authorization", "Bearer $it")
+                    }
                 }
-            }
-            .build()
+                .build()
+        } else {
+            originalRequest
+        }
 
         val response = chain.proceed(request)
 
-        if (response.code == 401 && response.body?.string()?.contains("access token expired") == true) {
+        // 토큰 만료시 처리
+        if (response.code == 401) {
             response.close()
             return@runBlocking handleTokenRefresh(chain, originalRequest)
+        }
+
+        // 쿠키에서 토큰 추출
+        response.headers("Set-Cookie").forEach { cookie ->
+            when {
+                cookie.contains(ACCESS_TOKEN) -> {
+                    val token = cookie.substringAfter("$ACCESS_TOKEN=")
+                        .substringBefore(";")
+                    tokenManager.saveAccessToken(token)
+                }
+                cookie.contains(REFRESH_TOKEN) -> {
+                    val token = cookie.substringAfter("$REFRESH_TOKEN=")
+                        .substringBefore(";")
+                    tokenManager.saveRefreshToken(token)
+                }
+            }
         }
 
         response
@@ -32,35 +62,31 @@ class AuthInterceptor(private val tokenManager: TokenManager) : Interceptor {
         val refreshToken = tokenManager.getRefreshToken() ?:
         throw IllegalStateException("Refresh token not found")
 
+        // 토큰 재발급 요청
         val refreshRequest = Request.Builder()
-            .url("${chain.request().url.newBuilder().host("api.example.com").build()}/reissue")
+            .url("${chain.request().url.scheme}://${chain.request().url.host}/reissue")
             .post(RequestBody.create(null, ByteArray(0)))
-            .addHeader("Authorization", "Bearer $refreshToken")
-            .build()
+            .build()  // RefreshToken은 쿠키에 있으므로 헤더에 추가하지 않음
 
         val refreshResponse = chain.proceed(refreshRequest)
 
         return if (refreshResponse.isSuccessful) {
-            refreshResponse.body?.string()?.let { responseBody ->
-                // Parse the response and extract new tokens
-                // This is a simplified example. You should use proper JSON parsing here.
-                val newAccessToken = responseBody.substringAfter("\"access_token\":\"").substringBefore("\"")
-                val newRefreshToken = responseBody.substringAfter("\"refresh_token\":\"").substringBefore("\"")
+            // 새로운 토큰으로 원래 요청 재시도
+            val newAccessToken = tokenManager.getAccessToken()
 
-                // Save new tokens
-                tokenManager.saveAccessToken(newAccessToken)
-                tokenManager.saveRefreshToken(newRefreshToken)
+            val newRequest = originalRequest.newBuilder()
+                .header("Authorization", "Bearer $newAccessToken")
+                .build()
 
-                // Retry the original request with the new access token
-                val newRequest = originalRequest.newBuilder()
-                    .header("Authorization", "Bearer $newAccessToken")
-                    .build()
-
-                refreshResponse.close()
-                chain.proceed(newRequest)
-            } ?: refreshResponse
+            refreshResponse.close()
+            chain.proceed(newRequest)
         } else {
             refreshResponse
         }
+    }
+
+    companion object {
+        private const val ACCESS_TOKEN = "access_token"
+        private const val REFRESH_TOKEN = "refresh_token"
     }
 }

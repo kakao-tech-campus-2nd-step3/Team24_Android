@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateChallengeActivity : AppCompatActivity() {
-    private val createChallengeViewModel: ChallengeViewModel by viewModels()
+    private val createChallengeDetailViewModel: ChallengeDetailViewModel by viewModels()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

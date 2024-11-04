@@ -12,14 +12,14 @@ import retrofit2.http.Path
 interface HistoryApi {
 
     // 1. 회원 챌린지 History 단건 조회
-    @GET("api/history/{history_id}")
+    @GET("api/history/{historyId}")
     suspend fun getHistoryById(
         @Header("Authorization") accessToken: String,
-        @Path("history_id") historyId: Long
+        @Path("historyId") historyId: Long
     ): Response<HistoryResponse>
 
     // 2. 회원 챌린지 History 전체 조회
-    @GET("api/history")
+    @GET("api/histories")
     suspend fun getAllHistory(
         @Header("Authorization") accessToken: String
     ): Response<HistoryListResponse>
